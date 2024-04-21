@@ -75,10 +75,7 @@ class ViewController: UIViewController {
         
         // Checking if the user replied correctly
         if sender.currentTitle == questionList[questionNumber].answer {
-            print("Correct answer")
             self.score += 1
-        } else {
-            print("incorrect answer")
         }
         
         // fetching the next question
