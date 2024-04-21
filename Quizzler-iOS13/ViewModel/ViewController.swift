@@ -16,8 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
-    // quiz data - questions
     var questionNumber: Int = 0
+    var score: Int = 0
+    
+    // quiz data - questions
     var questionList: [Question] = [
         Question(title: "A slug's blood is green.", answer: "True", isAnswered: false),
         Question(title: "Approximately one quarter of human bones are in the feet.", answer: "True", isAnswered: false),
@@ -44,7 +46,7 @@ class ViewController: UIViewController {
         // Checking if there are any unanswered questions available.
         let availableQuestions = questionList.filter({$0.isAnswered == false}).count
         if availableQuestions == 0 {
-            questionLabel.text = "No further questions available"
+            questionLabel.text = "You completed the quiz! You got \(self.score) of \(questionList.count) right."
             trueButton.alpha  = 0
             falseButton.alpha = 0
             return
@@ -74,6 +76,7 @@ class ViewController: UIViewController {
         // Checking if the user replied correctly
         if sender.currentTitle == questionList[questionNumber].answer {
             print("Correct answer")
+            self.score += 1
         } else {
             print("incorrect answer")
         }
